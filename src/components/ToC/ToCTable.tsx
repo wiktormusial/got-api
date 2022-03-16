@@ -21,11 +21,11 @@ const ToCTable: React.FC<Props> = ({ data }) => {
                         {item.allegiances.length !== 0
                             ? getAllegiances(item.allegiances).map((item) => {
                                   return (
-                                      <>
+                                      <span key={item}>
                                           <Link to={`house/${item}`}>
                                               {item}
                                           </Link>{" "}
-                                      </>
+                                      </span>
                                   )
                               })
                             : "No allegiances"}

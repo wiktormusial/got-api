@@ -18,7 +18,7 @@ const ToC = () => {
     const [url, setUrl] = useState(
         "https://anapioficeandfire.com/api/characters?page=1&pageSize=25"
     )
-    const [error, setError] = useState("")
+    const [error, setError] = useState<string | undefined>()
 
     useEffect(() => {
         fetchCharacters(url)
@@ -26,13 +26,16 @@ const ToC = () => {
                 setData(res.data)
                 setLinkHeaders(new Link(res.headers.link).refs)
             })
-            .catch((err) => setError(err))
+            .catch((err) => {
+                setError(err.message)
+            })
     }, [url])
 
     return (
         <div>
             <ToCFilter pageSize={pageSize} setUrl={setUrl} />
             {url}
+            {error && <div>{error}</div>}
             <ToCTable data={data} />
             {linkHeaders && (
                 <ToCPagination

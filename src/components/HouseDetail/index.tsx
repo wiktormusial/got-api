@@ -1,61 +1,43 @@
 import { useEffect, useState } from "react"
-import { Link, useParams } from "react-router-dom"
+import { useParams } from "react-router-dom"
 import axios from "axios"
 import { FetchHouse } from "./types"
+import HouseCard from "./HouseCard"
 
 const fetchHouse = async (id: string) => {
     const response = await axios.get<FetchHouse>(
         `https://anapioficeandfire.com/api/houses/${id}`
     )
 
-    return response.data
+    return response
 }
 
 const HouseDetail = () => {
-    const [data, setData] = useState<FetchHouse | undefined>()
+    const [data, setData] = useState<FetchHouse>()
+    const [error, setError] = useState<string>()
     const [isLoading, setIsLoading] = useState(true)
     const { id } = useParams()
 
     useEffect(() => {
         if (id) {
-            fetchHouse(id).then((res) => {
-                setData(res)
-                setIsLoading(false)
-            })
+            fetchHouse(id)
+                .then((res) => {
+                    setData(res.data)
+                    setIsLoading(false)
+                })
+                .catch((err) => {
+                    setError(err.message)
+                    setIsLoading(false)
+                })
         }
-    }, [])
-
-    const renderElements = (arr: string[]) => {
-        if (arr[0] !== "") {
-            return arr.map((item, index) => {
-                return (
-                    <span key={`${item}-${index}`}>
-                        {(index ? ", " : "") + item}
-                    </span>
-                )
-            })
-        } else {
-            return "No elements"
-        }
-    }
+    }, [id])
 
     if (isLoading) {
         return <div>Loading</div>
+    } else if (error) {
+        return <div>{error}</div>
     } else {
-        return (
-            <div>
-                <Link to="/">Previous page</Link>
-                <h1>{data!.name}</h1>
-                <p>Region: {data!.region ? data!.region : "-"}</p>
-                <p>Coat of arms: {data!.coatOfArms}</p>
-                <p>Words: {data!.words ? data!.words : "No words"}</p>
-                <p>Titles: {renderElements(data!.titles)}</p>
-                <p>Seats: {renderElements(data!.seats)}</p>
-                <p>Has died: {data!.diedOut ? "Yes" : "No"}</p>
-                <p>Has overlord: {data!.overlord ? "Yes" : "No"}</p>
-                <p>Number of Cadet Branches: {data!.cadetBranches.length}</p>
-            </div>
-        )
+        return <HouseCard data={data} />
     }
 }
 
