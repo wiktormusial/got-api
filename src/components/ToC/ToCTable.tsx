@@ -1,4 +1,5 @@
 import React from "react"
+import getName from "../../utils/getName"
 import { FetchCharacters } from "./types"
 
 interface Props {
@@ -10,7 +11,7 @@ const ToCTable: React.FC<Props> = ({ data }) => {
         return data!.map((item) => {
             return (
                 <tr key={item.url}>
-                    <td>Jon Snow</td>
+                    <td>{getName(item.name, item.aliases)}</td>
                     <td>Yes</td>
                     <td>{item.gender}</td>
                     <td>Culture</td>
