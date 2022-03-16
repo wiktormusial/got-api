@@ -46,7 +46,7 @@ const HouseDetail = () => {
             <div>
                 <Link to="/">Previous page</Link>
                 <h1>{data!.name}</h1>
-                <p>Region: {data!.region}</p>
+                <p>Region: {data!.region ? data!.region : "-"}</p>
                 <p>Coat of arms: {data!.coatOfArms}</p>
                 <p>Words: {data!.words ? data!.words : "No words"}</p>
                 <p>Titles: {renderElements(data!.titles)}</p>
