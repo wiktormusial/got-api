@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import { Reference } from "http-link-header"
 
 interface Props {
@@ -7,6 +7,17 @@ interface Props {
 }
 
 const ToCPagination: React.FC<Props> = ({ links, setUrl }) => {
+    const [lastPage, setLastPage] = useState<string | null>(null)
+
+    useEffect(() => {
+        links.forEach((item) => {
+            if (item.rel === "last") {
+                const url = new URL(item.uri).searchParams
+                setLastPage(url.get("page"))
+            }
+        })
+    }, [links])
+
     return (
         <>
             <select
@@ -30,6 +41,7 @@ const ToCPagination: React.FC<Props> = ({ links, setUrl }) => {
                     )
                 })}
             </ul>
+            Pages: {lastPage}
         </>
     )
 }
