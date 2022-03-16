@@ -22,21 +22,25 @@ const ToCPagination: React.FC<Props> = ({ setPagesize, links, setUrl }) => {
 
     return (
         <>
-            <div className="text-end mb-2">Pages: {lastPage}</div>
-            <select
-                onChange={(e) => {
-                    setUrl(
-                        `https://anapioficeandfire.com/api/characters?page=1&pageSize=${e.target.value}`
-                    )
-                    setPagesize(parseInt(e.target.value))
-                }}
-                className="form-control"
-            >
-                <option>Entries per page</option>
-                <option value="10">10</option>
-                <option value="25">25</option>
-                <option value="50">50</option>
-            </select>
+            <div className="row g-3 align-items-center">
+                <div className="col-9">
+                    <select
+                        onChange={(e) => {
+                            setUrl(
+                                `https://anapioficeandfire.com/api/characters?page=1&pageSize=${e.target.value}`
+                            )
+                            setPagesize(parseInt(e.target.value))
+                        }}
+                        className="form-control"
+                    >
+                        <option>Entries per page</option>
+                        <option value="10">10</option>
+                        <option value="25">25</option>
+                        <option value="50">50</option>
+                    </select>
+                </div>
+                <div className="text-end mb-2 col-3">Pages: {lastPage}</div>
+            </div>
             {lastPage === "1" ? (
                 ""
             ) : (
@@ -46,7 +50,9 @@ const ToCPagination: React.FC<Props> = ({ setPagesize, links, setUrl }) => {
                             <li
                                 className="pagination__element link-primary mx-1"
                                 key={item.rel}
-                                onClick={() => setUrl(item.uri)}
+                                onClick={() => {
+                                    setUrl(item.uri)
+                                }}
                             >
                                 {item.rel}
                             </li>

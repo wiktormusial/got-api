@@ -36,7 +36,7 @@ const ToCTable: React.FC<Props> = ({ data }) => {
     }
 
     return (
-        <table className="table table__characters">
+        <table className="table table-responsive table__characters">
             <thead>
                 <tr>
                     <th>Character</th>
