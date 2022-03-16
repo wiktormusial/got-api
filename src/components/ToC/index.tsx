@@ -14,6 +14,7 @@ const fetchCharacters = async (url: string) => {
 const ToC = () => {
     const [data, setData] = useState<FetchCharacters[] | []>()
     const [linkHeaders, setLinkHeaders] = useState<Reference[]>()
+    const [pageSize, setPagesize] = useState(25)
     const [url, setUrl] = useState(
         "https://anapioficeandfire.com/api/characters?page=1&pageSize=25"
     )
@@ -30,11 +31,15 @@ const ToC = () => {
 
     return (
         <div>
-            <ToCFilter />
+            <ToCFilter pageSize={pageSize} setUrl={setUrl} />
             {url}
             <ToCTable data={data} />
             {linkHeaders && (
-                <ToCPagination setUrl={setUrl} links={linkHeaders} />
+                <ToCPagination
+                    setUrl={setUrl}
+                    setPagesize={setPagesize}
+                    links={linkHeaders}
+                />
             )}
         </div>
     )

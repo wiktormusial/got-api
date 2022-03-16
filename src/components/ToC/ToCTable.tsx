@@ -12,7 +12,7 @@ const ToCTable: React.FC<Props> = ({ data }) => {
                 <tr key={item.url}>
                     <td>Jon Snow</td>
                     <td>Yes</td>
-                    <td>Male</td>
+                    <td>{item.gender}</td>
                     <td>Culture</td>
                     <td>123, 111</td>
                 </tr>

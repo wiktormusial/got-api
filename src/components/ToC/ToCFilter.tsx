@@ -1,7 +1,21 @@
-const ToCFilter = () => {
+import React from "react"
+
+interface Props {
+    setUrl: React.Dispatch<React.SetStateAction<string>>
+    pageSize: number
+}
+
+const ToCFilter: React.FC<Props> = ({ setUrl, pageSize }) => {
     return (
         <div>
-            <select data-testid="select-tocfilter">
+            <select
+                data-testid="select-tocfilter"
+                onChange={(e) =>
+                    setUrl(
+                        `https://anapioficeandfire.com/api/characters?pageSize=${pageSize}&gender=${e.target.value}`
+                    )
+                }
+            >
                 <option value="">Filter by character's sex</option>
                 <option value="male">Male</option>
                 <option value="female">Famale</option>

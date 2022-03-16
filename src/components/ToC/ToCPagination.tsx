@@ -4,9 +4,10 @@ import { Reference } from "http-link-header"
 interface Props {
     links: Reference[]
     setUrl: React.Dispatch<React.SetStateAction<string>>
+    setPagesize: React.Dispatch<React.SetStateAction<number>>
 }
 
-const ToCPagination: React.FC<Props> = ({ links, setUrl }) => {
+const ToCPagination: React.FC<Props> = ({ setPagesize, links, setUrl }) => {
     const [lastPage, setLastPage] = useState<string | null>(null)
 
     useEffect(() => {
@@ -21,11 +22,12 @@ const ToCPagination: React.FC<Props> = ({ links, setUrl }) => {
     return (
         <>
             <select
-                onChange={(e) =>
+                onChange={(e) => {
                     setUrl(
                         `https://anapioficeandfire.com/api/characters?page=1&pageSize=${e.target.value}`
                     )
-                }
+                    setPagesize(parseInt(e.target.value))
+                }}
             >
                 <option>Entries per page</option>
                 <option value="10">10</option>
