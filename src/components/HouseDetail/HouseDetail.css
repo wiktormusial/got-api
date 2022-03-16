@@ -1,0 +1,7 @@
+.card--house {
+    padding: 30px;
+    border: none !important;
+    -webkit-box-shadow: 0px 0px 25px -16px rgba(66, 68, 90, 1);
+    -moz-box-shadow: 0px 0px 25px -16px rgba(66, 68, 90, 1);
+    box-shadow: 0px 0px 25px -16px rgba(66, 68, 90, 1);
+}

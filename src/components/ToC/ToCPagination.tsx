@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { Reference } from "http-link-header"
+import "./ToC.css"
 
 interface Props {
     links: Reference[]
@@ -21,6 +22,7 @@ const ToCPagination: React.FC<Props> = ({ setPagesize, links, setUrl }) => {
 
     return (
         <>
+            <div className="text-end mb-2">Pages: {lastPage}</div>
             <select
                 onChange={(e) => {
                     setUrl(
@@ -28,22 +30,30 @@ const ToCPagination: React.FC<Props> = ({ setPagesize, links, setUrl }) => {
                     )
                     setPagesize(parseInt(e.target.value))
                 }}
+                className="form-control"
             >
                 <option>Entries per page</option>
                 <option value="10">10</option>
                 <option value="25">25</option>
                 <option value="50">50</option>
             </select>
-            <ul>
-                {links.map((item) => {
-                    return (
-                        <li key={item.rel} onClick={() => setUrl(item.uri)}>
-                            {item.rel}
-                        </li>
-                    )
-                })}
-            </ul>
-            Pages: {lastPage}
+            {lastPage === "1" ? (
+                ""
+            ) : (
+                <ul className="pagination">
+                    {links.map((item) => {
+                        return (
+                            <li
+                                className="pagination__element link-primary mx-1"
+                                key={item.rel}
+                                onClick={() => setUrl(item.uri)}
+                            >
+                                {item.rel}
+                            </li>
+                        )
+                    })}
+                </ul>
+            )}
         </>
     )
 }

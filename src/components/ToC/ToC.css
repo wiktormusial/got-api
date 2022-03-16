@@ -1,0 +1,36 @@
+.pagination {
+    list-style: none;
+    padding: 0;
+}
+
+.pagination__element {
+    display: inline;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.form__input {
+    background-color: pink;
+}
+
+.card__table {
+    padding: 30px;
+    border: none !important;
+    -webkit-box-shadow: 0px 0px 25px -16px rgba(66, 68, 90, 1);
+    -moz-box-shadow: 0px 0px 25px -16px rgba(66, 68, 90, 1);
+    box-shadow: 0px 0px 25px -16px rgba(66, 68, 90, 1);
+    width: 80vw;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.table__characters {
+    overflow-x: scrol;
+}
+
+@media screen and (max-width: 760px) {
+    .card__table {
+        width: 100%;
+        margin: 0;
+    }
+}

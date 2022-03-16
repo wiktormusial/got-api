@@ -32,18 +32,21 @@ const ToC = () => {
     }, [url])
 
     return (
-        <div>
-            <ToCFilter pageSize={pageSize} setUrl={setUrl} />
-            {url}
-            {error && <div>{error}</div>}
-            <ToCTable data={data} />
-            {linkHeaders && (
-                <ToCPagination
-                    setUrl={setUrl}
-                    setPagesize={setPagesize}
-                    links={linkHeaders}
-                />
-            )}
+        <div className="center">
+            <div className="card card__table">
+                <h1>Table of Charcters</h1>
+                <hr />
+                <ToCFilter pageSize={pageSize} setUrl={setUrl} />
+                {error && <div>{error}</div>}
+                <ToCTable data={data} />
+                {linkHeaders && (
+                    <ToCPagination
+                        setUrl={setUrl}
+                        setPagesize={setPagesize}
+                        links={linkHeaders}
+                    />
+                )}
+            </div>
         </div>
     )
 }
