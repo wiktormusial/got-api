@@ -26,7 +26,7 @@ const HouseDetail = () => {
     }, [])
 
     const renderElements = (arr: string[]) => {
-        if (arr.length !== 0) {
+        if (arr[0] !== "") {
             return arr.map((item, index) => {
                 return (
                     <span key={`${item}-${index}`}>
