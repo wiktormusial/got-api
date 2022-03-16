@@ -1,4 +1,6 @@
 import React from "react"
+import { Link } from "react-router-dom"
+import getAllegiances from "../../utils/getAllegiances"
 import getName from "../../utils/getName"
 import { FetchCharacters } from "./types"
 
@@ -14,8 +16,20 @@ const ToCTable: React.FC<Props> = ({ data }) => {
                     <td>{getName(item.name, item.aliases)}</td>
                     <td>Yes</td>
                     <td>{item.gender}</td>
-                    <td>Culture</td>
-                    <td>123, 111</td>
+                    <td>{item.culture ? item.culture : "Unknown"}</td>
+                    <td>
+                        {item.allegiances.length !== 0
+                            ? getAllegiances(item.allegiances).map((item) => {
+                                  return (
+                                      <>
+                                          <Link to={`house/${item}`}>
+                                              {item}
+                                          </Link>{" "}
+                                      </>
+                                  )
+                              })
+                            : "No allegiances"}
+                    </td>
                 </tr>
             )
         })
