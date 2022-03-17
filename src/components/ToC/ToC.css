@@ -1,0 +1,27 @@
+.table {
+    table-layout: fixed;
+    width: 100%;
+    padding: 0;
+    border: 2px solid #bdbdbd;
+}
+
+.table th {
+    border-bottom: 1px solid#bdbdbd;
+    text-align: left;
+    padding-left: 16px;
+    padding-top: 32px;
+    padding-bottom: 8px;
+}
+
+.table td {
+    padding: 16px;
+    border-bottom: 1px solid#bdbdbd;
+}
+
+.table tr {
+    border-bottom: 1px solid#eeeeee;
+}
+
+.table tr:nth-child(even) {
+    background-color: #eeeeee;
+}

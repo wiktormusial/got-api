@@ -6,6 +6,8 @@ import ToCPagination from "./ToCPagination"
 import ToCTable from "./ToCTable"
 import { FetchCharacters } from "./types"
 
+import "./ToC.css"
+
 const fetchCharacters = async (url: string) => {
     const response = await axios.get<FetchCharacters[]>(url)
     return response

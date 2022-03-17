@@ -5,11 +5,14 @@ import Routing from "./routing/Routing"
 import { store } from "./store/store"
 import { Provider } from "react-redux"
 import * as serviceWorker from "./serviceWorker"
+import Container from "./components/Container"
 
 ReactDOM.render(
     <React.StrictMode>
         <Provider store={store}>
-            <Routing />
+            <Container>
+                <Routing />
+            </Container>
         </Provider>
     </React.StrictMode>,
     document.getElementById("root")

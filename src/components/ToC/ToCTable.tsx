@@ -12,7 +12,7 @@ const ToCTable: React.FC<Props> = ({ data }) => {
     const renderTable = () => {
         return data!.map((item) => {
             return (
-                <tr key={item.url}>
+                <tr key={item.url} className="table__row">
                     <td>{getName(item.name, item.aliases)}</td>
                     <td>Yes</td>
                     <td>{item.gender}</td>
@@ -36,9 +36,9 @@ const ToCTable: React.FC<Props> = ({ data }) => {
     }
 
     return (
-        <table>
+        <table className="table" cellSpacing={0}>
             <thead>
-                <tr>
+                <tr className="table__row">
                     <th>Character</th>
                     <th>Alive</th>
                     <th>Gender</th>
@@ -48,7 +48,7 @@ const ToCTable: React.FC<Props> = ({ data }) => {
             </thead>
             <tbody>
                 {!data ? (
-                    <tr>
+                    <tr className="table__row">
                         <td colSpan={5}>Loading</td>
                     </tr>
                 ) : (
