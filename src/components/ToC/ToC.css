@@ -44,3 +44,28 @@
 .filters__select {
     width: 30%;
 }
+
+.pages {
+    display: flex;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    width: 100%;
+}
+
+.pages__element {
+    width: 50%;
+}
+
+.filters__pagination {
+    display: flex;
+    list-style-type: none;
+    color: #2196f3;
+    text-decoration: underline;
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+}
+
+.filters__pagiation__element {
+    width: 25%;
+}
