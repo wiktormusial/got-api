@@ -30,30 +30,43 @@ const ToCFilter: React.FC<Props> = ({ setUrl, pageSize }) => {
     }
 
     return (
-        <div>
-            <select
-                data-testid="select-tocfilter"
-                onChange={(e) =>
-                    setUrl(
-                        `https://anapioficeandfire.com/api/characters?pageSize=${pageSize}&gender=${e.target.value}`
-                    )
-                }
-                ref={selectRef}
+        <div className="filters">
+            <div className="filters__element filters__select">
+                <select
+                    data-testid="select-tocfilter"
+                    onChange={(e) =>
+                        setUrl(
+                            `https://anapioficeandfire.com/api/characters?pageSize=${pageSize}&gender=${e.target.value}`
+                        )
+                    }
+                    className="form__select"
+                    ref={selectRef}
+                >
+                    <option value="">Filter by character's sex ↓</option>
+                    <option value="male">Male</option>
+                    <option value="female">Famale</option>
+                </select>
+            </div>
+            <form
+                onSubmit={(e) => handleSubmit(e)}
+                className="filters__element filters__form align-right"
             >
-                <option value="">Filter by character's sex</option>
-                <option value="male">Male</option>
-                <option value="female">Famale</option>
-            </select>
-            <form onSubmit={(e) => handleSubmit(e)}>
                 <input
                     type="text"
                     data-testid="input-tocfilter"
+                    placeholder="Filter by culture"
                     value={culture}
                     onChange={(e) => setCulture(e.target.value)}
+                    className="form__input"
                 />
-                <button data-testid="button-tocfilter">Filter</button>
+                <input
+                    data-testid="button-tocfilter"
+                    type="submit"
+                    className="btn btn--primary"
+                    value="Filter"
+                />
+                <div className="filters__error">{error && error}</div>
             </form>
-            {error && error}
         </div>
     )
 }

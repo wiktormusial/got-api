@@ -14,3 +14,46 @@ body {
         padding: 0;
     }
 }
+
+.align-right {
+    text-align: right;
+}
+
+.form__select {
+    padding: 16px;
+    font-size: 16px;
+    border-radius: 5px;
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+.form__input {
+    padding: 16px;
+    font-size: 16px;
+    border: 1px solid lightslategray;
+    border-radius: 5px;
+    margin-right: 5px;
+}
+
+.btn {
+    padding: 16px;
+    border: 0;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.btn--primary {
+    background-color: #2196f3;
+    border: 1px solid #2196f3;
+    color: white;
+}
+
+.btn--primary:hover {
+    background-color: #1e88e5;
+}
+
+.btn--primary:active {
+    background-color: #1976d2;
+}

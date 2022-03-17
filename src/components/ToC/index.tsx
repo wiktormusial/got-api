@@ -36,7 +36,6 @@ const ToC = () => {
     return (
         <div>
             <ToCFilter pageSize={pageSize} setUrl={setUrl} />
-            {url}
             {error && <div>{error}</div>}
             <ToCTable data={data} />
             {linkHeaders && (
