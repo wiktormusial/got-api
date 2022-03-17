@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react"
 import { Reference } from "http-link-header"
-import { link } from "fs"
 
 interface Props {
     links: Reference[]

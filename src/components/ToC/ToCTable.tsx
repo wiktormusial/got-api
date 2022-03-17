@@ -1,5 +1,6 @@
 import React from "react"
 import { Link } from "react-router-dom"
+import getAlive from "../../utils/getAlive"
 import getAllegiances from "../../utils/getAllegiances"
 import getName from "../../utils/getName"
 import { FetchCharacters } from "./types"
@@ -14,7 +15,7 @@ const ToCTable: React.FC<Props> = ({ data }) => {
             return (
                 <tr key={item.url} className="table__row">
                     <td>{getName(item.name, item.aliases)}</td>
-                    <td>Yes</td>
+                    <td>{getAlive(item.born, item.died)}</td>
                     <td>{item.gender}</td>
                     <td>{item.culture ? item.culture : "Unknown"}</td>
                     <td>
