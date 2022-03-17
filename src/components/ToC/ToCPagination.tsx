@@ -16,6 +16,7 @@ const ToCPagination: React.FC<Props> = ({ setPagesize, links, setUrl }) => {
 
         if (link) {
             setUrl(link.uri)
+            window.scrollTo(0, 0)
         }
     }
 
