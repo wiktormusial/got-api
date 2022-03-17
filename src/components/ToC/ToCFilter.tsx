@@ -42,7 +42,7 @@ const ToCFilter: React.FC<Props> = ({ setUrl, pageSize }) => {
                     className="form__select"
                     ref={selectRef}
                 >
-                    <option value="">Filter by character's sex ↓</option>
+                    <option value="">Filter by Gender</option>
                     <option value="male">Male</option>
                     <option value="female">Famale</option>
                 </select>

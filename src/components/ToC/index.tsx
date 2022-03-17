@@ -35,6 +35,7 @@ const ToC = () => {
 
     return (
         <div>
+            <h1>Table of Characters</h1>
             <ToCFilter pageSize={pageSize} setUrl={setUrl} />
             {error && <div>{error}</div>}
             <ToCTable data={data} />
