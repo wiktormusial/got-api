@@ -46,7 +46,7 @@ const ToCPagination: React.FC<Props> = ({
                     }}
                     className="form__select pages__element"
                 >
-                    <option>Entries per page</option>
+                    <option value="25">Entries per page</option>
                     <option value="10">10</option>
                     <option value="25">25</option>
                     <option value="50">50</option>
