@@ -41,7 +41,12 @@ const ToCFilter: React.FC<Props> = ({ setUrl, pageSize, setQuery }) => {
                         setUrl(
                             `https://anapioficeandfire.com/api/characters?pageSize=${pageSize}&gender=${e.target.value}`
                         )
-                        setQuery(`&gender=${e.target.value}`)
+
+                        if (e.target.value === "") {
+                            setQuery("")
+                        } else {
+                            setQuery(`&gender=${e.target.value}`)
+                        }
                     }}
                     className="form__select"
                     ref={selectRef}
