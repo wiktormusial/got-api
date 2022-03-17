@@ -5,9 +5,15 @@ interface Props {
     links: Reference[]
     setUrl: React.Dispatch<React.SetStateAction<string>>
     setPagesize: React.Dispatch<React.SetStateAction<number>>
+    query: string
 }
 
-const ToCPagination: React.FC<Props> = ({ setPagesize, links, setUrl }) => {
+const ToCPagination: React.FC<Props> = ({
+    setPagesize,
+    links,
+    setUrl,
+    query,
+}) => {
     const [lastPage, setLastPage] = useState<string | null>(null)
 
     const getPageLink = (page: string) => {
@@ -34,7 +40,7 @@ const ToCPagination: React.FC<Props> = ({ setPagesize, links, setUrl }) => {
                 <select
                     onChange={(e) => {
                         setUrl(
-                            `https://anapioficeandfire.com/api/characters?page=1&pageSize=${e.target.value}`
+                            `https://anapioficeandfire.com/api/characters?page=1&pageSize=${e.target.value}${query}`
                         )
                         setPagesize(parseInt(e.target.value))
                     }}

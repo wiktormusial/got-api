@@ -2,10 +2,11 @@ import React, { useState, useRef } from "react"
 
 interface Props {
     setUrl: React.Dispatch<React.SetStateAction<string>>
+    setQuery: React.Dispatch<React.SetStateAction<string>>
     pageSize: number
 }
 
-const ToCFilter: React.FC<Props> = ({ setUrl, pageSize }) => {
+const ToCFilter: React.FC<Props> = ({ setUrl, pageSize, setQuery }) => {
     const [culture, setCulture] = useState("")
     const [error, setError] = useState<string | undefined>()
     const selectRef = useRef<HTMLSelectElement>(null)
@@ -23,6 +24,8 @@ const ToCFilter: React.FC<Props> = ({ setUrl, pageSize }) => {
                 `https://anapioficeandfire.com/api/characters?pageSize=${pageSize}&culture=${culture}`
             )
 
+            setQuery(`&culture=${culture}`)
+
             if (selectRef.current) {
                 selectRef.current.value = ""
             }
@@ -34,17 +37,18 @@ const ToCFilter: React.FC<Props> = ({ setUrl, pageSize }) => {
             <div className="filters__element filters__select">
                 <select
                     data-testid="select-tocfilter"
-                    onChange={(e) =>
+                    onChange={(e) => {
                         setUrl(
                             `https://anapioficeandfire.com/api/characters?pageSize=${pageSize}&gender=${e.target.value}`
                         )
-                    }
+                        setQuery(`&gender=${e.target.value}`)
+                    }}
                     className="form__select"
                     ref={selectRef}
                 >
                     <option value="">Filter by Gender</option>
                     <option value="male">Male</option>
-                    <option value="female">Famale</option>
+                    <option value="female">Female</option>
                 </select>
             </div>
             <form

@@ -7,6 +7,7 @@ import ToCTable from "./ToCTable"
 import { FetchCharacters } from "./types"
 
 import "./ToC.css"
+import ToCQuery from "./ToCQuery"
 
 const fetchCharacters = async (url: string) => {
     const response = await axios.get<FetchCharacters[]>(url)
@@ -17,6 +18,7 @@ const ToC = () => {
     const [data, setData] = useState<FetchCharacters[] | []>()
     const [linkHeaders, setLinkHeaders] = useState<Reference[]>()
     const [pageSize, setPagesize] = useState(25)
+    const [query, setQuery] = useState<string>("")
     const [url, setUrl] = useState(
         "https://anapioficeandfire.com/api/characters?page=1&pageSize=25"
     )
@@ -36,13 +38,24 @@ const ToC = () => {
     return (
         <div>
             <h1>Table of Characters</h1>
-            <ToCFilter pageSize={pageSize} setUrl={setUrl} />
+            <ToCFilter
+                setQuery={setQuery}
+                pageSize={pageSize}
+                setUrl={setUrl}
+            />
+            <ToCQuery
+                setUrl={setUrl}
+                pageSize={pageSize}
+                query={query}
+                setQuery={setQuery}
+            />
             {error && <div>{error}</div>}
             <ToCTable data={data} />
             {linkHeaders && (
                 <ToCPagination
                     setUrl={setUrl}
                     setPagesize={setPagesize}
+                    query={query}
                     links={linkHeaders}
                 />
             )}

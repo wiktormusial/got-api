@@ -69,3 +69,19 @@
 .filters__pagiation__element {
     width: 25%;
 }
+
+.query {
+    padding: 15px;
+    color: white;
+    background-color: #5c6bc0;
+    border: 3px solid #3949ab;
+    border-radius: 5px;
+    display: none;
+    width: fit-content;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.query--active {
+    display: block;
+}
