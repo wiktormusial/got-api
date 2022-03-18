@@ -18,7 +18,7 @@ const ToC = () => {
     const [data, setData] = useState<FetchCharacters[] | []>()
     const [linkHeaders, setLinkHeaders] = useState<Reference[]>()
     const [pageSize, setPagesize] = useState(25)
-    const [query, setQuery] = useState<string>("")
+    const [query, setQuery] = useState("")
     const [url, setUrl] = useState(
         "https://anapioficeandfire.com/api/characters?page=1&pageSize=25"
     )

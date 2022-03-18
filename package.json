@@ -43,6 +43,7 @@
     ]
   },
   "devDependencies": {
-    "@types/http-link-header": "^1.0.3"
+    "@types/http-link-header": "^1.0.3",
+    "msw": "^0.39.2"
   }
 }
