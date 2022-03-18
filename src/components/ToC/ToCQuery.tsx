@@ -10,6 +10,7 @@ interface Props {
 const ToCQuery: React.FC<Props> = ({ query, setQuery, setUrl, pageSize }) => {
     return (
         <div
+            data-testid="test-query"
             className={"query" + (query ? " query--active" : "")}
             onClick={() => {
                 setQuery("")
@@ -19,7 +20,9 @@ const ToCQuery: React.FC<Props> = ({ query, setQuery, setUrl, pageSize }) => {
             }}
         >
             <span className="text-bold">X</span>{" "}
-            {query.substring(query.lastIndexOf("=") + 1)}
+            <span data-testid="query-string">
+                {query.substring(query.lastIndexOf("=") + 1)}
+            </span>
         </div>
     )
 }
