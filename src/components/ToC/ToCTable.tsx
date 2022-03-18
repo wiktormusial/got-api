@@ -7,33 +7,50 @@ import { FetchCharacters } from "./types"
 
 interface Props {
     data: FetchCharacters[] | undefined
+    isLoading: boolean
 }
 
-const ToCTable: React.FC<Props> = ({ data }) => {
+const ToCTable: React.FC<Props> = ({ data, isLoading }) => {
     const renderTable = () => {
-        return data!.map((item) => {
+        if (isLoading) {
             return (
-                <tr key={item.url} className="table__row">
-                    <td>{getName(item.name, item.aliases)}</td>
-                    <td>{getAlive(item.born, item.died)}</td>
-                    <td>{item.gender}</td>
-                    <td>{item.culture ? item.culture : "Unknown"}</td>
-                    <td>
-                        {item.allegiances.length !== 0
-                            ? getAllegiances(item.allegiances).map((item) => {
-                                  return (
-                                      <span key={item}>
-                                          <Link to={`house/${item}`}>
-                                              {item}
-                                          </Link>{" "}
-                                      </span>
-                                  )
-                              })
-                            : "No allegiances"}
-                    </td>
+                <tr className="table__row">
+                    <td colSpan={5}>Loading</td>
                 </tr>
             )
-        })
+        } else if (data?.length === 0) {
+            return (
+                <tr className="table__row">
+                    <td colSpan={5}>Table empty</td>
+                </tr>
+            )
+        } else {
+            return data!.map((item) => {
+                return (
+                    <tr key={item.url} className="table__row">
+                        <td>{getName(item.name, item.aliases)}</td>
+                        <td>{getAlive(item.born, item.died)}</td>
+                        <td>{item.gender}</td>
+                        <td>{item.culture ? item.culture : "Unknown"}</td>
+                        <td>
+                            {item.allegiances.length !== 0
+                                ? getAllegiances(item.allegiances).map(
+                                      (item) => {
+                                          return (
+                                              <span key={item}>
+                                                  <Link to={`house/${item}`}>
+                                                      {item}
+                                                  </Link>{" "}
+                                              </span>
+                                          )
+                                      }
+                                  )
+                                : "No allegiances"}
+                        </td>
+                    </tr>
+                )
+            })
+        }
     }
 
     return (
@@ -47,15 +64,7 @@ const ToCTable: React.FC<Props> = ({ data }) => {
                     <th>Allegiances</th>
                 </tr>
             </thead>
-            <tbody>
-                {!data ? (
-                    <tr className="table__row">
-                        <td colSpan={5}>Loading</td>
-                    </tr>
-                ) : (
-                    renderTable()
-                )}
-            </tbody>
+            <tbody>{renderTable()}</tbody>
         </table>
     )
 }

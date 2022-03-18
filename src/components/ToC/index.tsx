@@ -23,15 +23,19 @@ const ToC = () => {
         "https://anapioficeandfire.com/api/characters?page=1&pageSize=25"
     )
     const [error, setError] = useState<string | undefined>()
+    const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
+        setIsLoading(true)
         fetchCharacters(url)
             .then((res) => {
                 setData(res.data)
                 setLinkHeaders(new Link(res.headers.link).refs)
+                setIsLoading(false)
             })
             .catch((err) => {
                 setError(err.message)
+                setIsLoading(false)
             })
     }, [url])
 
@@ -50,7 +54,7 @@ const ToC = () => {
                 setQuery={setQuery}
             />
             {error && <div>{error}</div>}
-            <ToCTable data={data} />
+            <ToCTable isLoading={isLoading} data={data} />
             {linkHeaders && (
                 <ToCPagination
                     setUrl={setUrl}
