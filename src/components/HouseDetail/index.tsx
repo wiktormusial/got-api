@@ -3,8 +3,9 @@ import { useParams } from "react-router-dom"
 import axios from "axios"
 import { FetchHouse } from "./types"
 import HouseCard from "./HouseCard"
+import HouseError from "./HouseError"
 
-const fetchHouse = async (id: string) => {
+export const fetchHouse = async (id: string) => {
     const response = await axios.get<FetchHouse>(
         `https://anapioficeandfire.com/api/houses/${id}`
     )
@@ -35,7 +36,7 @@ const HouseDetail = () => {
     if (isLoading) {
         return <div>Loading</div>
     } else if (error) {
-        return <div>{error}</div>
+        return <HouseError error={error} />
     } else {
         return <HouseCard data={data} />
     }
